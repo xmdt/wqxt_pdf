@@ -404,8 +404,21 @@ class WQXTDownloader:
                 outputstream=f
             )
 
+def parseMultBid( bids ):
+    while len(bids):
+        gettoken()
+        bid = bids.pop(0)
+        dl = WQXTDownloader()
+        dl.download_pdf(int(bid))
+
 if __name__ == '__main__':
-    # usage: python3 crawl_wqxt.py <book_id>
-    gettoken()
-    dl = WQXTDownloader()
-    dl.download_pdf(int(sys.argv[1]))
+    # usage: python3 crawl_wqxt.py <book_id> <book_id>
+    
+    LSArg = len(sys.argv)
+    if LSArg==1:
+        bids = input("请输入需要下载的bid(以" "间隔)：")
+        Abid = bids.split( " " )
+        parseMultBid( Abid )
+    else:
+        bids = sys.argv[1:]
+        parseMultBid( bids )
