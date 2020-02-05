@@ -208,8 +208,9 @@ if __name__ == '__main__':
     gettoken()
     while alldone==False:
       alldone=True
-      for i in a:
-        logging.info('%s/%s', a.index(i)+1, len(a))
-        dl.download_pdf(i)
+#       for i in a:
+#         logging.info('%s/%s', a.index(i)+1, len(a))
+#         dl.download_pdf(i)
+        dl.download_pdf(int(sys.argv[1]))
     if alldone==True:
         input("OK")
